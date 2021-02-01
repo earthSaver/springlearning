@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <zidingyi v-for="item in books" :name="item"></zidingyi>
+</div>
+
+<script>
+    Vue.component("zidingyi",{
+        props:["name"],
+        template:'<li>{{name}}</li>'
+    })
+
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            books: ['java','hadoop','C++']
+        }
+    });
+</script>
+</body>
+</html>

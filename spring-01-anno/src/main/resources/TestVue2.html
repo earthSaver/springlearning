@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestVue</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+<todo>
+    <todo-title slot="todo-title" :title="title"></todo-title>
+    <todo-item slot="todo-item" v-for="(book,index) in books" :item="book" :index="index" v-on:rm_book="removeItems(index)"></todo-item>
+</todo>
+    <p><button @click="func">函数测试</button></p>
+</div>
+<script>
+
+    Vue.component("todo", {
+        template: '<div>' +
+            '<slot name="todo-title"></slot>' +
+            '<ul>' +
+            '<slot name="todo-item"></slot>' +
+            '</ul>' +
+            '</div>'
+    })//这里设定slot的name是和下面的两个组件进行关联
+
+    Vue.component("todo-title", {
+        props: ["title"],
+        template: '<div>{{title}}</div>'
+    })//在进行遍历的时候，(item,index) in items，注意索引写在后面
+
+    Vue.component("todo-item", {
+        props: ['item','index'],
+        template: '<li>{{index}}---{{item}} <button @click="remove">删除</button></li>',//button标签要写在li里面
+        methods: {
+            remove:function (index) {
+                this.$emit("rm_book",index);//绑定自定义事件
+            }
+        }
+    })
+
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            title: "狂神说课程",
+            books: ["Java", "C++", "Python"]
+        },
+        methods: {
+            removeItems:function (index){
+                console.log(arguments);
+                console.log("删除了" + this.books[index]);
+                this.books.splice(index,1);
+            },
+            func:function () {
+                //如果绑定时没有使用括号，即@click="func"，默认传入的参数是鼠标点击事件：MouseEvent，也可以使用一个参数进行接收
+                console.log(arguments);
+                console.log(arguments.length);//1
+            },
+        }
+    })
+</script>
+</body>
+</html>
