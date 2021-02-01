@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TESTJS</title>
+
+</head>
+<body>
+<div id="f">
+    <div id="c1">div1</div>
+    <div id="c2">div2</div>
+</div>
+</body>
+<script>
+    "user strict";
+    let name = "小明";
+    let age = 18;
+    let score = 99 / 5;
+    let msg =
+        `helloworld
+hahaha
+hehehe`;
+    let info = `${name}，你好，年龄是：` + age + `，分数是：${score}`;
+    let s = new Set([1, 2, 3, 3, 3, 3, 3, 3, 3, 3]);
+    for (let x of s) {
+        console.log(x);
+    }
+    let m = new Map([["a", 1], ["b", 2], ["c", 3]]);
+    for (let x of m) {
+        console.log(x[0] + "<->" + x[1]);
+    }
+    let abs = function (x, ...rest) {
+        if (typeof x != "number") {
+            throw "this is not a number";
+        }
+        console.log(arguments);
+        console.log(rest);
+        if (x >= 0) {
+            return x;
+        } else {
+            return -x;
+        }
+    };
+    var x = 100;
+    var g = 100;
+
+    function f2() {
+        g = g + 1;
+    }
+
+    function f() {
+        console.log(x);
+        var x = 10;
+        console.log(x);
+        for (var i = 0; i < 100; i = i + 1) {
+            var j = 100;
+        }
+        console.log("i=" + i);
+        console.log("j=" + j);
+    }
+
+    if (x < 1000) {
+        let n = 123;
+    }
+    //console.log(n);
+    var Student = {
+        name: "student",
+        age: 18,
+        run: function () {
+            console.log(this.name + " run...");
+        }
+    };
+
+    var xiaoming = {
+        name: "xiaoming"
+    };
+
+    xiaoming.__proto__ = Student;
+    var fa = document.getElementById("f");
+    //console.log(fa);
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestForm</title>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+</head>
+<body>
+    <form action="#" method="get" onsubmit="return func()">
+        <p>
+            <span>用户名</span> <input type="text" id="username" name="username" required/>
+        </p>
+        <p>
+            <span>密码</span> <input type="password" id="pwd" required/>
+        </p>
+        <input type="hidden" id="md5pwd" name="password"/>
+        <input type="submit" value="提交">
+    </form>
+    <script>
+        function func(){
+            var username = document.getElementById("username");
+            var pwd = document.getElementById("pwd");
+            var md5pwd = document.getElementById("md5pwd");
+            console.log(username.value);
+            console.log(pwd.value);
+            md5pwd.value = md5(pwd.value);
+            console.log(md5pwd.value);
+        }
+    </script>
+</body>
+</html>
